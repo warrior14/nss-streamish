@@ -5,6 +5,8 @@ namespace Streamish.Utils
 {
     /// <summary>
     ///  A set of useful function for interacting with ADO.NET
+    ///  Utility/helper class that helps simplify some of the database interaction code, 
+    ///  particularly with regards to dealing with null values. 
     /// </summary>
     public static class DbUtils
     {
@@ -124,3 +126,4 @@ namespace Streamish.Utils
         }
     }
 }
+
