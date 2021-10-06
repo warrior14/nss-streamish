@@ -86,6 +86,13 @@ namespace Streamish.Controllers
             return NoContent();
         }
 
+        [HttpGet("hottest")]
+
+        public IActionResult hottest(DateTime since, bool sortDesc)
+        {
+            return Ok(_videoRepository.Hottest(since, sortDesc));
+        }
+
         // https://localhost:5001/api/video/id
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
