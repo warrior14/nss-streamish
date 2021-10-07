@@ -50,7 +50,8 @@ namespace Streamish.Controllers
             var video = _videoRepository.GetVideoByIdWithComments(id);
             if (video == null)
             {
-                return StatusCode(404);
+                //return StatusCode(404);
+                return NotFound();
             }
             return Ok(video);
         }
@@ -62,6 +63,13 @@ namespace Streamish.Controllers
         public IActionResult Search(string q, bool sortDesc)
         {
             return Ok(_videoRepository.Search(q, sortDesc));
+        }
+
+        //https://localhost:5001/api/video/hottest?since=<SOME_DATE> 
+        [HttpGet("hottest")]
+        public IActionResult HottestVideos(DateTime since, bool sortDesc)
+        {
+            return Ok(_videoRepository.GetHottestVideos(since, sortDesc));
         }
 
 
@@ -84,13 +92,6 @@ namespace Streamish.Controllers
 
             _videoRepository.Update(video);
             return NoContent();
-        }
-
-        [HttpGet("hottest")]
-
-        public IActionResult hottest(DateTime since, bool sortDesc)
-        {
-            return Ok(_videoRepository.Hottest(since, sortDesc));
         }
 
         // https://localhost:5001/api/video/id
