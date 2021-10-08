@@ -1,40 +1,29 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Card, CardBody } from "reactstrap";
+import { Switch, Route } from "react-router-dom";
+import VideoList from "./VideoList";
+import VideoForm from "./VideoForm";
+import VideoDetails from "./VideoDetails";
 
-const Video = ({ video }) => {
+const ApplicationViews = () => {
   return (
-    <Card >
-      <p className="text-left px-2"><strong>Posted by:</strong> {video.userProfile.name}</p>
-      <Link to={`/videos/${video.id}`}>
-            <strong>{video.title}</strong>
-      </Link> 
-      <CardBody>
-        <iframe className="video"
-          src={video.url}
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen />
+      // The Switch component is going to look at the url and render the first route that is a match:
+      // The exact attribute specifies that we only want to render this component then the url is exactly /
+      // If a url matches the value of the path attribute, the children of that <Route> will be what gets rendered.
+    <Switch>
+      <Route path="/" exact>
+        <VideoList />
+      </Route>
 
-        {/* <p><strong>Video Title:</strong> {video.title}</p> */}
-        {/* <p><strong>Description:</strong> {video.description}</p>
-        <strong>Comments:</strong> */}
-        {/* {video.comments.map(comment => {
-             return <p>Commented by {comment.userProfile.name}: {comment.message}</p>
-        })} */}
-        {/* {
-          video.comments.length !== 0 ?
-            video.comments.map(comment => {
-                return <p>Commented by {comment.userProfile.name}: {comment.message}</p>}) 
-            : 
-                <p>N/A</p>
-        } */}
+      <Route path="/videos/add">
+        <VideoForm />
+      </Route>
 
-
-      </CardBody>
-    </Card>
+      {/* Route below is an example of a path with a route param: /videos/:id. Using the colon, we can tell the react router that this will be some id parameter. */}
+      <Route path="/videos/:id">
+        <VideoDetails />
+      </Route>
+    </Switch>
   );
 };
 
-export default Video;
+export default ApplicationViews;
