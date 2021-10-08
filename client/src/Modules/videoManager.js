@@ -21,13 +21,6 @@ export const searchVideos = (videoSearchTerm) => {
       .then((res) => res.json());
 };
 
-
-export const getVideo = (id) => {
-  return fetch(`${baseUrl}/${id}`).then((res) => res.json());
-};
-
-
-
 export const addVideo = (video) => {
   return fetch(baseUrl, {
     method: "POST",
@@ -36,4 +29,8 @@ export const addVideo = (video) => {
     },
     body: JSON.stringify(video),
     });
+};
+
+export const getVideo = (id) => {
+    return fetch(`${baseUrl}/${id}`).then((res) => res.json());
 };

@@ -1,22 +1,40 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
-import VideoList from "./VideoList";
-import VideoForm from "./VideoForm";
+import { Link } from "react-router-dom";
+import { Card, CardBody } from "reactstrap";
 
-const ApplicationViews = () => {
+const Video = ({ video }) => {
   return (
-    <Switch>
-      <Route path="/" exact>
-        <VideoList />
-      </Route>
+    <Card >
+      <p className="text-left px-2"><strong>Posted by:</strong> {video.userProfile.name}</p>
+      <Link to={`/videos/${video.id}`}>
+            <strong>{video.title}</strong>
+      </Link> 
+      <CardBody>
+        <iframe className="video"
+          src={video.url}
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen />
 
-      <Route path="/videos/add">
-        <VideoForm />
-      </Route>
+        {/* <p><strong>Video Title:</strong> {video.title}</p> */}
+        {/* <p><strong>Description:</strong> {video.description}</p>
+        <strong>Comments:</strong> */}
+        {/* {video.comments.map(comment => {
+             return <p>Commented by {comment.userProfile.name}: {comment.message}</p>
+        })} */}
+        {/* {
+          video.comments.length !== 0 ?
+            video.comments.map(comment => {
+                return <p>Commented by {comment.userProfile.name}: {comment.message}</p>}) 
+            : 
+                <p>N/A</p>
+        } */}
 
-      <Route path="/videos/:id">{/* TODO: Video Details Component */}</Route>
-    </Switch>
+
+      </CardBody>
+    </Card>
   );
 };
 
-export default ApplicationViews;
+export default Video;
