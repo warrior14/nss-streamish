@@ -22,9 +22,18 @@ const VideoDetails = () => {
         <div className="col-sm-12 col-lg-6">
           <Video video={video} />
           <ListGroup>
-            {video.comments.map((c) => (
-              <ListGroupItem>{c.message}</ListGroupItem>
-            ))}
+            <p><strong>Description:</strong> {video.description}</p>
+            <strong>Comments:</strong>
+            {/* {video.comments.map((c) => (
+              <ListGroupItem>Commented by {c.userProfile.name}: {c.message}</ListGroupItem>
+            ))} */}
+            {
+            video.comments.length !== 0 ?
+                video.comments.map(comment => {
+                    return <ListGroupItem>Commented by {comment.userProfile.name}: {comment.message}</ListGroupItem>}) 
+                : 
+                    <p>No Comments Posted</p>
+            }
           </ListGroup>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Video from './Video';
 import VideoSearch from "./VideoSearch";
-import VideoForm from "./VideoForm";
+// import VideoForm from "./VideoForm";
 import { getAllVideosWithComments} from "../modules/videoManager";
 
 const VideoList = () => {
@@ -28,12 +28,12 @@ const VideoList = () => {
                 <VideoSearch setVideos={setVideos}/>
             </div>
         </div>
-        <br/>
-        <div className="container">
+        <br/><br/>
+        {/* <div className="container">
             <div className="row justify-content-center">
                 <VideoForm getVideosWithComments={getVideosWithComments}/>
             </div>
-        </div>
+        </div> */}
         <br/>
         <div className="container">
             <div className="row justify-content-center">
@@ -48,4 +48,3 @@ const VideoList = () => {
 };
 
 export default VideoList;
-

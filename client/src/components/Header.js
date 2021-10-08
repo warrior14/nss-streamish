@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+    // using the <Link> component import from the react router instead of anchor tags for navigation
+    // and use the "to" attribute to specify where we want the link to take the user to:
   return (
     <nav className="navbar navbar-expand navbar-dark bg-info">
       <Link to="/" className="navbar-brand">
