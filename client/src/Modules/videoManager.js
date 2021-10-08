@@ -1,21 +1,24 @@
-const baseUrl = "/api/video";
+const baseUrl = '/api/video';
 
 export const getAllVideos = () => {
-  return fetch(baseUrl).then((res) => res.json());
+  return fetch(baseUrl)
+    .then((res) => res.json())
 };
-
-export const videoWithCommentsEndpoint = baseUrl + "/GetWithComments";
-
-export const searchVideosEndpoint = baseUrl + "/search";
 
 export const getAllVideosWithComments = () => {
-  return fetch(videoWithCommentsEndpoint).then((res) => res.json());
+    return fetch(`${baseUrl}/getwithcomments`)
+      .then((res) => res.json())
 };
 
-export const searchVideos = (searchText) => {
-  return fetch(
-    searchVideosEndpoint + "/?q=" + searchText + "&sortDesc=true"
-  ).then((res) => res.json());
+// export const searchVideos = (videoSearchTerm, sortDesc) => {
+//     return fetch(`${baseUrl}/search?q=${videoSearchTerm}&sortDesc=${sortDesc}`)
+//       .then((res) => res.json())
+// };
+
+export const searchVideos = (videoSearchTerm) => {
+    console.log('searching?')
+    return fetch(`${baseUrl}/search?q=${videoSearchTerm}&sortDesc=false`)
+      .then((res) => res.json());
 };
 
 export const addVideo = (video) => {
@@ -25,5 +28,5 @@ export const addVideo = (video) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(video),
-  });
+    });
 };
